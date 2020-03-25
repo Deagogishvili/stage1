@@ -35,7 +35,7 @@ def get_features(seq):
     features['perc_entropy'] = features['entropy']/features['ideal_entropy']
     features['hydr_count'] = sum(1 for x in seq if x in hydrophobic_proteins)
     features['polar_count'] = sum(1 for x in seq if x in polar_proteins)
-    features['burried'] = sum(burried[x] for x in seq if x in hydrophobic_proteins)
+    features['buried'] = sum(burried[x] for x in seq if x in hydrophobic_proteins)
 
     seq = ''.join([x for x in seq if x not in ['X','B','Z',"'",'O','U']])
 
