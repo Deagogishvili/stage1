@@ -1,7 +1,7 @@
 path:
-    root: /home/jan/Documents/BioInformatics/HydrProject/
-    src: /home/jan/Documents/BioInformatics/HydrProject/src/
-    model: /home/jan/Documents/BioInformatics/HydrProject/model/
+    root: /home/jan/Documents/BioInformatics/stage1/
+    src: /home/jan/Documents/BioInformatics/stage1/src/
+    model: /home/jan/Documents/BioInformatics/stage1/model/
     data: /home/jan/Documents/BioInformatics/HydrProject/data/
     logs: /home/jan/Documents/BioInformatics/HydrProject/logs/
     fasta: /home/jan/Documents/BioInformatics/HydrProject/data/fasta/PISCES/pisces.fasta
@@ -9,9 +9,10 @@ path:
     chain: /home/jan/Documents/BioInformatics/HydrProject/data/pdb/chain/
     dssp_dssp: /home/jan/Documents/BioInformatics/HydrProject/data/dssp/dssp/
     dssp_csv: /home/jan/Documents/BioInformatics/HydrProject/data/dssp/csv/
-    processed_data: /home/jan/Documents/BioInformatics/HydrProject/data/processed_data/csv/
+    processed_data: /home/jan/Documents/BioInformatics/stage1/data/processed_data/csv/
     netsurfp2: /home/jan/Documents/BioInformatics/HydrProject/data/netsurfp2/
     TMHMM: /home/jan/Documents/BioInformatics/HydrProject/data/TMHMM/
+    patch: /home/jan/Documents/BioInformatics/stage1/data/patches/
 log: True
 hydrophobic:
   - A

@@ -50,15 +50,15 @@ for modeltype in modeltypes.keys():
     loaded_model = pickle.load(open(filename, 'rb'))
     result = loaded_model.predict(modeltypes[modeltype])
 
-    best_features = loaded_model.best_estimator_.feature_importances_
-    plt.figure(figsize=(14,10))
-    plt.barh([x for _,x in sorted(zip(best_features,modeltypes[modeltype].columns))][-10:], sorted(best_features)[-10:])
-    plt.title('RHSA feature importance ('+names[modeltype]+')')
-    plt.xticks(fontsize=24)
-    plt.yticks(fontsize=24)
-    plt.tight_layout()
-    plt.show()
-    exit()
+    # best_features = loaded_model.best_estimator_.feature_importances_
+    # plt.figure(figsize=(14,10))
+    # plt.barh([x for _,x in sorted(zip(best_features,modeltypes[modeltype].columns))][-10:], sorted(best_features)[-10:])
+    # plt.title('LHPSA feature importance ('+names[modeltype]+')')
+    # plt.xticks(fontsize=24)
+    # plt.yticks(fontsize=24)
+    # plt.tight_layout()
+    # plt.show()
+    # exit()
     pred_dict[names[modeltype]] = result
 
 xlab = 'Error threshold (%)'

@@ -34,9 +34,10 @@ def get_best_model(X, y, methods):
             highest_r = rsquared
             best_model = clf
 
-    # best_features = best_model.best_estimator_.feature_importances_
-    # plt.bar(X.columns, best_features)
-    # plt.show()
+    best_features = best_model.best_estimator_.feature_importances_
+    plt.bar(X.columns, best_features)
+    plt.show()
+    print(highest_r)
     return best_model.fit(X,y)
 
 config = yaml.safe_load(open("../config.yml"))
@@ -72,9 +73,10 @@ test_old = pd.read_csv(test_file)
 df = pd.read_csv('../../data/patches/lp_residue_all.csv')
 df2 = pd.read_csv('../../data/processed_data/csv/global_seq_features_data.csv')
 df3 = pd.read_csv('../../data/processed_data/csv/netsurp2_data.csv')
+df4 = pd.read_csv('../../data/processed_data/csv/tmhmm_data.csv')
 
-df = df3.merge(df[df['rank'] == 1]).merge(df2)
-
+df = df3.merge(df[df['rank'] == 1]).merge(df2).merge(df4)
+df = df[~   df['tmp']]
 df_train = df[df['id'].isin(train_old['id'])]
 df_test = df[df['id'].isin(test_old['id'])]
 
@@ -96,8 +98,10 @@ X_train_nsp2 = df_train[training_columns_nsp2]
 X_train_length = df_train[length]
 y_patch = df_train['size']
 
-pickle.dump(get_best_model(X_train_length, y_patch, methods_naive), open(config['path']['model']+'patch_Naive_model.model', 'wb'))
-pickle.dump(get_best_model(X_train_own, y_patch, methods), open(config['path']['model']+'patch_GFM_model.model', 'wb'))
-pickle.dump(get_best_model(X_train_nsp2, y_patch, methods), open(config['path']['model']+'patch_NetSurfP2_model.model', 'wb'))
-pickle.dump(get_best_model(X_train_nsp2m, y_patch, methods), open(config['path']['model']+'patch_nsp2m_model.model', 'wb'))
-pickle.dump(get_best_model(X_train_tfm, y_patch, methods), open(config['path']['model']+'patch_TFM_model.model', 'wb'))
+get_best_model(X_train_own, y_patch, methods), open(config['path']['model']+'patch_GFM_model.model', 'wb')
+
+# pickle.dump(get_best_model(X_train_length, y_patch, methods_naive), open(config['path']['model']+'patch_Naive_model.model', 'wb'))
+# pickle.dump(get_best_model(X_train_own, y_patch, methods), open(config['path']['model']+'patch_GFM_model.model', 'wb'))
+# pickle.dump(get_best_model(X_train_nsp2, y_patch, methods), open(config['path']['model']+'patch_NetSurfP2_model.model', 'wb'))
+# pickle.dump(get_best_model(X_train_nsp2m, y_patch, methods), open(config['path']['model']+'patch_nsp2m_model.model', 'wb'))
+# pickle.dump(get_best_model(X_train_tfm, y_patch, methods), open(config['path']['model']+'patch_TFM_model.model', 'wb'))

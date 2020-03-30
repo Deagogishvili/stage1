@@ -4,10 +4,11 @@ import yaml
 from PlotFactory import PlotFactory
 import os
 import matplotlib.pyplot as plt
+import pandas as pd
 
 config = yaml.safe_load(open("../config.yml"))
 plotFactory = PlotFactory()
-df_train, df_test = prepare_data.split_data()
+df_test = pd.read_csv(config['path']['processed_data']+'ready_to_use_data_test.csv')
 
 three_features = ['length','polar_count','hydr_count']
 testing_columns = ['length', 'entropy',
@@ -29,10 +30,13 @@ modeltypes = {'GFM':X_test_own, 'NetSurfP2':X_test_nsp2, 'TFM':X_test_tfm, 'Naiv
 names =  {'GFM':'GFM', 'NetSurfP2':'Combination Model', 'TFM':'TFM', 'Naive':'Naive Model'}
 pred_dict = {'NetSurfP2':df_test['thsa_netsurfp2']}
 for modeltype in modeltypes.keys():
-    file_name = 'thsa_'+modeltype+'_model.model'
-    filename = os.path.join(config['path']['model'], file_name)
-    loaded_model = pickle.load(open(filename, 'rb'))
-    result = loaded_model.predict(modeltypes[modeltype])
+    if modeltype == 'TFM':
+        result = pd.read_csv('../../data/predictions/tfm.csv')['x']
+    else:
+        file_name = 'thsa_'+modeltype+'_model.model'
+        filename = os.path.join(config['path']['model'], file_name)
+        loaded_model = pickle.load(open(filename, 'rb'))
+        result = loaded_model.predict(modeltypes[modeltype])
 
     # best_features = loaded_model.best_estimator_.feature_importances_
     # plt.figure(figsize=(14,10))
@@ -43,9 +47,9 @@ for modeltype in modeltypes.keys():
     # plt.tight_layout()
     # plt.show()
     # exit()
-    df_new = df_test[['id']]
-    df_new['predict'] = result
-    df_new.to_csv('../../data/results/'+modeltype+'_result.csv', index=False)
+    # df_new = df_test[['id']]
+    # df_new['predict'] = result
+    # df_new.to_csv('../../data/results/'+modeltype+'_result.csv', index=False)
     pred_dict[names[modeltype]] = result
 
 xlab = 'Error threshold (%)'

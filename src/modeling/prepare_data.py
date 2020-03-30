@@ -7,7 +7,6 @@ import yaml
 
 config = yaml.safe_load(open("../config.yml"))
 
-# hydrophobic_proteins =  ['F','W','I','L','M','V','C','A']
 hydrophobic_proteins = config['hydrophobic']
 
 def get_working_data():
