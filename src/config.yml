@@ -13,6 +13,7 @@ path:
     netsurfp2: /home/jan/Documents/BioInformatics/HydrProject/data/netsurfp2/
     TMHMM: /home/jan/Documents/BioInformatics/HydrProject/data/TMHMM/
     patch: /home/jan/Documents/BioInformatics/stage1/data/patches/
+    predictions: /home/jan/Documents/BioInformatics/stage1/data/predictions/
 log: True
 hydrophobic:
   - A
