@@ -2,7 +2,16 @@ from Bio import SeqIO
 import pandas as pd
 
 def process_fasta_data(FASTA_FILE, PROCESSED_DATA_PATH):
+    """create csv with full sequence
 
+    Parameters
+    ----------
+    FASTA_FILE : str
+        location of the fasta file
+    PROCESSED_DATA_PATH : str
+        output file
+
+    """
     records = list(SeqIO.parse(FASTA_FILE, "fasta"))
     results = {
             'id':[x.id for x in records],

@@ -5,13 +5,26 @@ from os.path import isfile, join
 from Bio.PDB.MMCIFParser import MMCIFParser
 
 def process_monomer_data(PDB_PROTEIN_PATH, PROCESSED_DATA_PATH):
+    """check if pdb protein is a monomer
+
+    Parameters
+    ----------
+    PDB_PROTEIN_PATH : str
+        location of the directory with full pdb files
+    PROCESSED_DATA_PATH : str
+        output file
+
+    """
 
     protein_files = [f for f in listdir(PDB_PROTEIN_PATH) if isfile(join(PDB_PROTEIN_PATH, f))]
     results = {'id':[], 'monomer':[]}
+
+    #for all files in directory
     for protein_file in protein_files:
         protein_id = protein_file[:-4]
         pdb_protein_file = PDB_PROTEIN_PATH+protein_file
 
+        # if only 1 chain, pdb = monomer
         try:
             p = MMCIFParser(QUIET=1)
             structure = p.get_structure(protein_id, pdb_protein_file)

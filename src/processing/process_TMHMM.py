@@ -1,6 +1,17 @@
 import pandas as pd
 
 def process_tmhmm(TMHMM_PATH, PROCESSED_DATA_PATH, threshold):
+    """retrieve the predicted TASA, THSA and RHSA from NetSurfP2 output files
+
+    Parameters
+    ----------
+    TMHMM_PATH : str
+        location of the directory with TMHMM files
+    PROCESSED_DATA_PATH : str
+        output file
+    threshold : int
+        minimum number of amino acids in transmembrane helix 
+    """
 
     df = pd.read_csv(TMHMM_PATH,  sep='\t',  header=None)
     expAA = df[2].str.split('=',expand=True)[1]

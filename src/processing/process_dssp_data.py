@@ -10,6 +10,18 @@ config = yaml.safe_load(open("../config.yml"))
 hydr = config['hydrophobic']
 
 def correct_sequence(sequence):
+    """Correct ambigious aa's or cystine bridges
+
+    Parameters
+    ----------
+    sequence : str
+        protien sequence
+
+    Returns
+    -------
+    str
+        corrected protein sequence
+    """
     corrected_sequence = ''
 
     for aa_type in sequence:
@@ -30,7 +42,16 @@ def correct_sequence(sequence):
     return corrected_sequence
 
 def process_dssp_data(DSSP_CSV_PATH, PROCESSED_DATA_PATH):
+    """calculate the thsa, rhsa and tasa and write this to a csv
 
+    Parameters
+    ----------
+    DSSP_CSV_PATH : str
+        path to the dssp_csv files
+    PROCESSED_DATA_PATH : str
+        output file
+
+    """
     dssp_csv_files = [f for f in listdir(DSSP_CSV_PATH) if isfile(join(DSSP_CSV_PATH, f))]
     results = {
             'id':[],
@@ -39,6 +60,7 @@ def process_dssp_data(DSSP_CSV_PATH, PROCESSED_DATA_PATH):
             'dssp_sequence':[]
             }
 
+    # add the TASA, THSA and RHSA to the dictionary for every protein
     for dssp_csv_file in dssp_csv_files:
         df = pd.read_csv(DSSP_CSV_PATH+dssp_csv_file, index_col=0)
         results['id'].append(dssp_csv_file[:-4])

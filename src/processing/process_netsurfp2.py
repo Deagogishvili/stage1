@@ -7,6 +7,17 @@ config = yaml.safe_load(open("../config.yml"))
 hydrophobic_aa = config['hydrophobic']
 
 def process_netsurfp2(NSP2_PATH, PROCESSED_DATA_PATH):
+    """retrieve the predicted TASA, THSA and RHSA from NetSurfP2 output files
+
+    Parameters
+    ----------
+    NSP2_PATH : str
+        location of the directory with netsurfp2 files
+    PROCESSED_DATA_PATH : str
+        output file
+
+    """
+
     extension = 'csv'
     os.chdir(NSP2_PATH)
     result = glob.glob('*.{}'.format(extension))

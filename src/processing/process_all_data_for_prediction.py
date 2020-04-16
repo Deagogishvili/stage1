@@ -8,6 +8,13 @@ config = yaml.safe_load(open("../config.yml"))
 hydrophobic_aa = config['hydrophobic']
 
 def process_all_data_for_predictions():
+    """combine preprocessed features in one DataFrame
+
+    Returns
+    -------
+    pandas.DataFrame
+        all global features combined
+    """
     df_DSSP = pd.read_csv(config['path']['processed_data']+'dssp_data.csv')
     df_TMHMM = pd.read_csv(config['path']['processed_data']+'tmhmm_data.csv')
     df_fasta = pd.read_csv(config['path']['processed_data']+'fasta_data.csv')
@@ -30,6 +37,9 @@ def process_all_data_for_predictions():
     return df_no_tmp
 
 def process_all_data_for_predictions_test_train():
+    """split combined features in train and test set
+
+    """
 
     train_file = '/home/jan/Documents/BioInformatics/stage/HSAtool/files/CSV/train/train.csv'
     test_file = '/home/jan/Documents/BioInformatics/stage/HSAtool/files/CSV/test/test.csv'
