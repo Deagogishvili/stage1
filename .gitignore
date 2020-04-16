@@ -1,0 +1,6 @@
+# Ignore everything
+research/*
+
+# But not these files...
+!research/Graphs.ipynb
+!research/PlotFactory.py
