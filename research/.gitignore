@@ -1,7 +1,7 @@
 # Ignore everything
-./*
+*
 
 # But not these files...
-!./.gitignore
-!./Graphs.ipynb
-!./PlotFactory.py
+!.gitignore
+!Graphs.ipynb
+!PlotFactory.py
