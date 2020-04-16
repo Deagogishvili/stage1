@@ -5,15 +5,13 @@ from os import listdir
 from os.path import isfile, join
 import pandas as pd
 
+config = yaml.safe_load(open("../config.yml"))
+
 atoms = ['C', 'S']
 
 path = '/home/jan/Documents/BioInformatics/final_project_patch/data/pdb/hoh/'
 pisite_path = '/home/jan/Documents/BioInformatics/final_project_patch/data/pisite/nr/'
 csv_file = '../../data/patches/lp_pisite_atom.csv'
-
-# if isfile(csv_file):
-#     print('CSV already exists')
-#     exit()
 
 files = [f for f in listdir(path) if isfile(join(path, f))]
 
@@ -32,8 +30,6 @@ for file in files:
         pisite_data = pisiteParser.get_data()
         print(file)
         proteinPatches = ProteinPatch(id,path+file,atoms)
-        # proteinPatches.plot_largest_patch()
-        # break
         patches = proteinPatches.patches()
         patches = sorted(patches, key=(lambda x:x.size()), reverse=True)
 
@@ -44,7 +40,6 @@ for file in files:
             result_dict['rank'] = int(i+1)
             result_dict['total_ppis'] = pisiteParser.interaction_sites()
             result_dict['random'] = patch.random_patch(pisite_data)
-            # print(result_dict)
             df = df.append(pd.Series(result_dict), ignore_index=True)
 
         df.to_csv(csv_file, index=False)

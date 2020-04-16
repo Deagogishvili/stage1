@@ -23,4 +23,12 @@ First fill in the root directory in the config.yml file
 
 #### processing
 
-* All processed data files are in /data/processed_data
+* All processed data files are in /data/processed_data already
+* to run process_all_data_for_prediction.py you should first run all other preprocessing files
+
+#### modeling
+
+* TFM models are created in TFM.R since Cubist regression is an R methods
+* all other models are created in model.py
+
+#### molpatch

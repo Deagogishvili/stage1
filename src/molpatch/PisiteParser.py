@@ -1,10 +1,28 @@
 
 class PisiteParser:
+    """
+    Parse pisite files to dict
+
+    ...
+
+    Attributes
+    ----------
+    pisite_file : str
+        file with the pisite data
+
+    """
     def __init__(self, file):
         self.file = file
         self.pisite_dict = self.parse()
 
     def parse(self):
+        """parse a pisite file to a dict
+
+        return
+        ------
+        dict
+            {pisite id: list}
+        """
         #open file for reading
         print("opening file ", self.file)
         try:
@@ -28,7 +46,21 @@ class PisiteParser:
             return
 
     def interaction_sites(self):
+        """Get total interaction sites
+
+        return
+        ------
+        int
+            total interaction sites
+        """
         return sum(1 for x in self.pisite_dict if int(self.pisite_dict[x][2]) == 1)
 
     def get_data(self):
+        """Return interaction dict
+
+        return
+        ------
+        dict
+            {pisite id: list}
+        """
         return self.pisite_dict

@@ -5,9 +5,11 @@ from os.path import isfile, join
 from PisiteParser import PisiteParser
 import pandas as pd
 
-hydr_residues = ['A','F', 'C', 'L', 'I', 'W', 'V', 'M', 'Y']
+config = yaml.safe_load(open("../config.yml"))
 
-path = '/home/jan/Documents/BioInformatics/final_project_patch/data/pdb/hoh/'
+hydr_residues = config['hydrophobic']
+
+path = '/home/jan/Documents/BioInformatics/final_project_patch/data/pdb/chain/'
 pisite_path = '/home/jan/Documents/BioInformatics/final_project_patch/data/pisite/nr/'
 csv_file = '../../data/patches/lp_pisite_residue_with_aa.csv'
 
