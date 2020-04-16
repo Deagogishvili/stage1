@@ -21,4 +21,4 @@ This repository has five main directories.
 
 Jan van Eck – janvaneck94@gmail.com
 
-[https://github.com/yourname/github-link](https://github.com/dbader/)
+[https://github.com/janvaneck1994/](https://github.com/janvaneck1994/)
