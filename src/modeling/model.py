@@ -29,6 +29,7 @@ def get_best_model(X, y, methods, model_output=None):
     if model_output:
         pickle.dump(best_model, model_output)
 
+
     return best_model
 
 
@@ -67,7 +68,7 @@ df_train = pd.read_csv(config['path']['processed_data']+'ready_to_use_data_train
 df_test = pd.read_csv(config['path']['processed_data']+'ready_to_use_data_test.csv')
 
 gfm_columns = [ 'length', 'entropy',
-       'hydr_count', 'polar_count', 'burried',
+       'hydr_count', 'polar_count', 'buried',
        'gravy', 'molecular_weight', 'aromaticity', 'instability_index',
        'isoelectric_point', 'A', 'C', 'D', 'E', 'F',
        'G', 'H', 'I', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W',

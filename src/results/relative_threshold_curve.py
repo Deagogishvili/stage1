@@ -38,7 +38,7 @@ ylab = 'Correctly predicted (%)'
 title = 'Relative error threshold curve for predicting RHSA'
 plotFactory.plot_perc_curve(df_test['rhsa'], pred_dict, 100, xlab, ylab, title)
 
-names =  {'gfm':'GFM', 'nsp2':'NetSurfP2 trained model', 'nsp2_gfm':'Combination Model', 'tfm':'TFM', 'length':'Naive Model'}
+names =  {'nsp2':'NetSurfP2 trained model', 'gfm':'GFM', 'nsp2_gfm':'Combination Model', 'tfm':'TFM', 'length':'Naive Model'}
 pred_dict = {}
 for name in names:
     if name == 'tfm':

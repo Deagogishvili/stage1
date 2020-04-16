@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
+from matplotlib.ticker import PercentFormatter
 
 plt.rc('font', size=16)
 plt.rc('axes', titlesize=26)
@@ -45,7 +46,7 @@ class PlotFactory():
         plt.figure(figsize=(12,8))
 
         for corr in corr_dict:
-            plt.plot(x,corr_dict[corr], label=corr)
+            plt.plot([i*100 for i in x],[i*100 for i in corr_dict[corr]], label=corr)
 
         plt.xlabel(xlab)
         plt.ylabel(ylab)
@@ -61,7 +62,7 @@ class PlotFactory():
         plt.figure(figsize=(12,8))
 
         for corr in corr_dict:
-            plt.plot(x,corr_dict[corr], label=corr)
+            plt.plot([i*100 for i in x],[i*100 for i in corr_dict[corr]], label=corr)
 
         plt.xlabel(xlab)
         plt.ylabel(ylab)
