@@ -1,5 +1,6 @@
 # Ignore everything
 research/*
+backup
 
 # But not these files...
 !research/Graphs.ipynb
