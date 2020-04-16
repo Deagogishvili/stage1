@@ -12,3 +12,15 @@ This directory has three main subdirectories.
   * code to generate global feature data
 
 ## How to use
+
+First fill in the root directory in the config.yml file
+
+#### preparation
+
+* Run download_pdb.py to get all the full pdbs in /data/pdb/proteins
+* Run create_chain.py to create pdb files of a selected pdb in /data/pdb/chains
+* Run create_dssp.py to create dssp and dssp_csv files
+
+#### processing
+
+* All processed data files are in /data/processed_data
