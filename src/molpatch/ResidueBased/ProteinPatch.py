@@ -11,7 +11,6 @@ from Bio.PDB import Selection
 from ResidueBased.Patch import ResiduePatch
 
 class ProteinPatch():
-
     """
     Parse pisite files to dict
 

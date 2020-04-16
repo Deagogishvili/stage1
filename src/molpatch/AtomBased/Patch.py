@@ -2,6 +2,20 @@ from Bio.SeqUtils import seq1
 import random
 
 class AtomPatch():
+    """
+    Parse pisite files to dict
+
+    Attributes
+    ----------
+    ids : list
+        residue ids
+    file: str
+        pdb file
+    dssp: dict
+        dssp dict
+    dssp_dict_keys: dict
+        dssp dict keys
+    """
 
     def __init__(self, ids, structure, result):
         self.ids = ids
@@ -16,6 +30,14 @@ class AtomPatch():
         return sum(self.result.atomArea(i) for i in self.ids)
 
     def residue_on_surface(self):
+        """
+        Get all residues accessible from the surface
+
+        Return
+        ------
+        list
+            residue ids
+        """
         s = self.structure
         n_atoms = s.nAtoms()
         residue_dict = []
@@ -25,6 +47,14 @@ class AtomPatch():
         return len(set(residue_dict))
 
     def create_residue_dict(self):
+        """
+        Get the residues corresponding to the atom
+
+        Return
+        ------
+        dict
+            {atom id: residue attributes}
+        """
         s = self.structure
         n_atoms = s.nAtoms()
         residue_dict = {}
@@ -40,6 +70,14 @@ class AtomPatch():
         return residue_dict
 
     def print_residues(self):
+        """
+        Get all residues accessible from the surface
+
+        Return
+        ------
+        list
+            residue ids
+        """
         residues = ''
         rd = self.residue_dict
 
@@ -50,6 +88,18 @@ class AtomPatch():
                 residues += rd[i]['char'].lower()
 
     def check_pisite(self, pisite_dict):
+        """
+        Get all interaction sites
+
+        Attributes
+        ----------
+        pisite_dict: pisite dict
+
+        Return
+        ------
+        int
+            interaction sites
+        """
         interaction_site = 0
         in_patch = 0
         total_interaction_sites = 0
@@ -71,6 +121,18 @@ class AtomPatch():
                 'size':self.size()}
 
     def random_patch(self, pisite_dict):
+        """
+        Get all interaction sites
+
+        Attributes
+        ----------
+        pisite_dict: pisite dict
+
+        Return
+        ------
+        int
+            fraction of interaction site in a random patch
+        """
         residues_in_patch = sum(1 for x in self.residue_dict if self.residue_dict[x]['selected'])
         my_list = [0]*(len(self.residue_dict)-residues_in_patch) + [1]*residues_in_patch
         random.shuffle(my_list)

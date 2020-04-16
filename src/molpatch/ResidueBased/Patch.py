@@ -2,6 +2,20 @@ from Bio.SeqUtils import seq1
 import random
 
 class ResiduePatch():
+    """
+    Parse pisite files to dict
+
+    Attributes
+    ----------
+    ids : list
+        residue ids
+    file: str
+        pdb file
+    dssp: dict
+        dssp dict
+    dssp_dict_keys: dict
+        dssp dict keys
+    """
 
     def __init__(self, ids, dssp, dssp_dict_keys):
         self.ids = ids
@@ -21,6 +35,14 @@ class ResiduePatch():
         return len(self.ids)
 
     def residue_on_surface(self):
+        """
+        Get all residues accessible from the surface
+
+        Return
+        ------
+        list
+            residue ids
+        """
         residue_list = []
         for x in self.dssp_dict_keys:
             if x[1][0] != ' ' or  x[1][2] != ' ':
@@ -30,6 +52,18 @@ class ResiduePatch():
         return residue_list
 
     def check_pisite(self, pisite_dict):
+        """
+        Get all interaction sites
+
+        Attributes
+        ----------
+        pisite_dict: pisite dict
+
+        Return
+        ------
+        int
+            interaction sites
+        """
         interaction_sites = 0
         for i in self.ids:
             id = i[-1][1]
@@ -40,6 +74,18 @@ class ResiduePatch():
         return interaction_sites
 
     def random_patch_ppis(self, pisite_dict):
+        """
+        Get all interaction sites
+
+        Attributes
+        ----------
+        pisite_dict: pisite dict
+
+        Return
+        ------
+        int
+            fraction of interaction site in a random patch
+        """
         residues_in_patch = self.patch_length()
         random_selected = [0]*(len(self.residue_on_surface())-residues_in_patch) + [1]*residues_in_patch
 

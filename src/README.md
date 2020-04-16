@@ -32,3 +32,6 @@ First fill in the root directory in the config.yml file
 * all other models are created in model.py
 
 #### molpatch
+
+* calculate_patches_pisite_atom.py and calculate_patches_pisite_res.py are examples of how the ProteinPatch class can be used to find the largest patch
+* PiSITE parser can be used to check what part of the patch are protein interacting residues
