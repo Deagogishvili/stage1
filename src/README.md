@@ -2,9 +2,13 @@
 
 This directory has three main subdirectories.
 
-* /patches
-  * all the MolPatch generated CSV files
-* /predictions
-  * CSV files with the predictions of all models
-* /processed_data
-  * CSV files with global features of the proteins created in ../src/
+* /modeling
+  * src for the creation of the ML models
+* /molpatch
+  * src code for MolPatch
+* /preparation
+  * src for downloading and generating all needed files for global feature processing (PDB, DSSP)
+* /processing
+  * code to generate global feature data
+
+## How to use

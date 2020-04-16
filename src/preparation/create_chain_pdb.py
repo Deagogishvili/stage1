@@ -18,10 +18,21 @@ class ChainSelect(Select):
             return 0
 
 def create_chain_pdb(FASTA_FILE, PDB_PROTEIN_PATH, PDB_CHAIN_PATH):
+    """Create a new pdb file of one chain
+
+    Parameters
+    ----------
+    FASTA_FILE : str
+        The file location of the pisces file
+    PDB_PROTEIN_PATH : str
+        The directory location of full pdb
+    PDB_CHAIN_PATH : str
+        The directory location of chain pdb
+    """
     # get fasta records
     records = list(SeqIO.parse(FASTA_FILE, "fasta"))
-    for record in records:
 
+    for record in records:
         chain_char = record.id[-1]
         protein_id = record.id[:-1]
         chain_id = record.id
@@ -33,6 +44,7 @@ def create_chain_pdb(FASTA_FILE, PDB_PROTEIN_PATH, PDB_CHAIN_PATH):
             continue
 
         try:
+            #Filter for one chain and create a new pdb file
             p = MMCIFParser(QUIET=1)
             structure = p.get_structure(protein_id, pdb_protein_file)
             io_w_no_h = PDBIO()
@@ -47,8 +59,5 @@ if __name__ == '__main__':
     import sys
 
     config = yaml.safe_load(open("../config.yml"))
-    if config['log']:
-        log = open(config['path']['logs']+'create_chain.log', "w")
-        sys.stdout = log
 
     create_chain_pdb(config['path']['fasta'], config['path']['protein'], config['path']['chain'])

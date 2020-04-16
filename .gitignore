@@ -1,6 +1,7 @@
 # Ignore everything
 research/*
 backup
+src/config2.yml
 
 # But not these files...
 !research/Graphs.ipynb
